@@ -1,0 +1,107 @@
+﻿
+@model Hospital.ViewModels.LabViewModel
+
+@{
+    ViewData["Title"] = "Request Lab Test";
+}
+
+<h2>Request Lab Test</h2>
+
+<hr />
+
+<form method="post">
+
+    <input asp-for="PatientId" hidden />
+
+
+    <div class="form-group">
+
+        <label>Test Type</label>
+
+        <input asp-for="TestType"
+               class="form-control" />
+
+    </div>
+
+
+
+    <div class="form-group mt-3">
+
+        <label>Test Code</label>
+
+        <input asp-for="TestCode"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="form-group mt-3">
+
+        <label>Weight</label>
+
+        <input asp-for="Weight"
+               class="form-control" />
+
+    </div>
+
+
+
+    <div class="form-group mt-3">
+
+        <label>Height</label>
+
+        <input asp-for="Height"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="form-group mt-3">
+
+        <label>Blood Pressure</label>
+
+        <input asp-for="BloodPressure"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="form-group mt-3">
+
+        <label>Temperature</label>
+
+        <input asp-for="Temperature"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <br />
+
+
+    <button class="btn btn-primary">
+
+        Save Lab Request
+
+    </button>
+
+
+    <a asp-action="Details"
+           asp-route-id="@Model.PatientId"
+           class="btn btn-secondary">
+
+        Cancel
+
+    </a>
+
+
+</form>
+

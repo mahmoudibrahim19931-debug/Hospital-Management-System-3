@@ -1,0 +1,102 @@
+html {
+    font-size: 15px;
+}
+
+@media (min-width:768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f4f7fc;
+    font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color: #333;
+}
+
+.container {
+    margin-top: 25px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+    color: #23395d;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.15);
+    }
+
+.table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+    .table thead {
+        background: #0F4C81;
+        color: white;
+    }
+
+        .table thead th {
+            border: none;
+            padding: 16px;
+        }
+
+    .table td {
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    .table tbody tr:hover {
+        background: #f8fbff;
+    }
+
+.btn {
+    border-radius: 10px;
+    transition: .3s;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    border: 1px solid #dbe2ef;
+    padding: 12px;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #0F4C81;
+        box-shadow: 0 0 10px rgba(15,76,129,.2);
+    }
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.footer {
+    margin-top: 40px;
+    background: white;
+    padding: 20px;
+}

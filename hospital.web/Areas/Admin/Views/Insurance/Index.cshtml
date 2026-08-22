@@ -1,0 +1,142 @@
+﻿@model List<Hospital.Models.Insurance>
+
+
+<h2>Insurances</h2>
+
+
+<a asp-action="Create"
+       class="btn btn-primary mb-3">
+
+    Create Insurance
+
+</a>
+
+
+
+<table class="table table-bordered">
+
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Policy</th>
+
+            <th>Discount</th>
+
+            <th>Active</th>
+
+            <th></th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+
+
+            <tr>
+
+
+
+                <td>
+
+                    @item.Name
+
+                </td>
+
+
+
+                <td>
+
+                    @item.PolicyNumber
+
+                </td>
+
+
+
+
+                <td>
+
+                    @item.DiscountPercentage %
+
+                </td>
+
+
+
+                <td>
+
+
+                    @if (item.IsActive)
+                    {
+                        <span class="badge bg-success">
+
+                            Active
+
+                        </span>
+                    }
+                    else
+                    {
+
+                        <span class="badge bg-danger">
+
+                            Disabled
+
+                        </span>
+
+                    }
+
+
+                </td>
+
+
+
+
+                <td>
+
+
+
+                    <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning">
+
+                        Edit
+
+                    </a>
+
+
+
+
+                    <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger">
+
+                        Delete
+
+                    </a>
+
+
+
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+    </tbody>
+
+
+
+</table>

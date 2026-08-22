@@ -1,0 +1,165 @@
+﻿@model Hospital.ViewModels.BillViewModel
+
+
+<h2>Payment Summary</h2>
+
+<hr />
+
+
+<div class="card p-3">
+
+    <div class="mb-3">
+
+        <label>Doctor</label>
+
+        <input class="form-control"
+               value="@Model.DoctorName"
+               readonly />
+
+    </div>
+
+
+
+    <div class="mb-3">
+
+        <label>Original Amount</label>
+
+        <input class="form-control"
+               value="@Model.OriginalAmount"
+               readonly />
+
+    </div>
+
+
+
+    <div class="mb-3">
+
+        <label>Insurance</label>
+
+
+        <form asp-action="Preview"
+              method="post">
+
+
+            <input type="hidden"
+                   name="billId"
+                   value="@Model.Id" />
+
+
+
+            <select name="insuranceId"
+                    class="form-control">
+
+
+                @foreach (var item in ViewBag.Insurances)
+                {
+
+                    <option value="@item.InsuranceId">
+
+                        @item.Insurance.Name
+
+                        (
+
+                        @item.Insurance.DiscountPercentage %
+
+                        )
+
+                    </option>
+
+                }
+
+            </select>
+
+
+            <br />
+
+
+            <button class="btn btn-primary">
+
+                Calculate
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+    @if (Model.InsuranceId != null)
+    {
+
+        <hr />
+
+
+        <div class="mb-3">
+
+            <label>Insurance</label>
+
+            <input class="form-control"
+                   value="@Model.InsuranceName"
+                   readonly />
+
+        </div>
+
+
+
+
+        <div class="mb-3">
+
+            <label>Discount</label>
+
+            <input class="form-control"
+                   value="@Model.DiscountAmount"
+                   readonly />
+
+        </div>
+
+
+
+
+        <div class="mb-3">
+
+            <label>Final Amount</label>
+
+            <input class="form-control"
+                   value="@Model.FinalAmount"
+                   readonly />
+
+        </div>
+
+
+
+
+        <form asp-action="Pay"
+              method="post">
+
+
+            <input type="hidden"
+                   name="billId"
+                   value="@Model.Id" />
+
+
+            <input type="hidden"
+                   name="insuranceId"
+                   value="@Model.InsuranceId" />
+
+
+
+            <button class="btn btn-success">
+
+                Confirm Payment
+
+            </button>
+
+
+        </form>
+
+
+    }
+
+</div>

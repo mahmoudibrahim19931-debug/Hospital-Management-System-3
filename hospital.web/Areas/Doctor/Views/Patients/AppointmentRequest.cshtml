@@ -1,0 +1,44 @@
+﻿@model Hospital.ViewModels.AppointmentViewModel
+
+<h2>Appointment Request</h2>
+
+<hr />
+
+
+<div class="card p-4">
+
+    <h4>@Model.PatientName</h4>
+
+    <p>
+        <b>Type :</b>
+        @Model.Type
+    </p>
+
+    <p>
+        <b>Description :</b>
+        @Model.Description
+    </p>
+
+    <p>
+        <b>Status :</b>
+        @Model.Status
+    </p>
+
+    <a asp-action="ApproveAppointment"
+           asp-route-id="@Model.Id"
+           class="btn btn-success">
+
+        Approve
+
+    </a>
+
+
+    <a asp-action="RejectAppointment"
+           asp-route-id="@Model.Id"
+           class="btn btn-danger">
+
+        Reject
+
+    </a>
+
+</div>

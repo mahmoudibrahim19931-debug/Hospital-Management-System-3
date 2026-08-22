@@ -1,0 +1,363 @@
+﻿@model Hospital.ViewModels.StatisticsViewModel
+
+<h1>Hospital Dashboard</h1>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Users"
+               asp-action="AllDoctors"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Doctors</h4>
+
+                <h2>@Model.DoctorsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Users"
+               asp-action="Index"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Patients</h4>
+
+                <h2>@Model.PatientsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Rooms"
+               asp-action="Index"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Rooms</h4>
+
+                <h2>@Model.RoomsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Appointments"
+               asp-action="Index"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Appointments</h4>
+
+                <h2>@Model.AppointmentsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Bills"
+               asp-action="Index"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Bills</h4>
+
+                <h2>@Model.BillsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Bills"
+               asp-action="Index"
+               asp-route-isPaid="true"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Paid Bills</h4>
+
+                <h2>@Model.PaidBills</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <a asp-area="Admin"
+               asp-controller="Bills"
+               asp-action="Index"
+               asp-route-isPaid="false"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Unpaid Bills</h4>
+
+                <h2>@Model.UnpaidBills</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+        <div class="card p-3 text-center">
+
+            <h4>Revenue</h4>
+
+            <h2>@Model.Revenue.ToString("0.00")</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br />
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <a asp-area="Lab"
+               asp-controller="Lab"
+               asp-action="PendingTests"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Labs</h4>
+
+                <h2>@Model.LabsCount</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="col-md-6">
+
+        <a asp-area="Lab"
+               asp-controller="Lab"
+               asp-action="PendingTests"
+               style="text-decoration:none;color:inherit;">
+
+            <div class="card p-3 text-center">
+
+                <h4>Pending Labs</h4>
+
+                <h2>@Model.PendingLabs</h2>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+<hr />
+
+<h3>Latest Doctors</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Specialist</th>
+
+            <th>City</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var doctor in Model.LatestDoctors)
+        {
+            <tr>
+
+                <td>@doctor.Name</td>
+
+                <td>@doctor.Specilist</td>
+
+                <td>@doctor.City</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<hr />
+
+<h3>Department Statistics</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Department</th>
+
+            <th>Doctors</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model.DepartmentStatistics)
+        {
+            <tr>
+
+                <td>@item.DepartmentName</td>
+
+                <td>@item.DoctorsCount</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<hr />
+
+<h3>Inventory Alerts</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Medicine</th>
+
+            <th>Quantity</th>
+
+            <th>Status</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @if (Model.LowStockMedicines.Any())
+        {
+            foreach (var item in Model.LowStockMedicines)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+
+                    <td>@item.Quantity</td>
+
+                    <td>
+
+                        @if (item.Quantity == 0)
+                        {
+                            <span class="badge bg-danger">
+                                Out Of Stock
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning">
+                                Low Stock
+                            </span>
+                        }
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+
+                <td colspan="3">
+
+                    No Alerts
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

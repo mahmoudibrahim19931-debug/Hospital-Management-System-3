@@ -1,0 +1,17 @@
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Repositories.deps.json
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Repositories.runtimeconfig.json
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Repositories.dll
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Repositories.pdb
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Models.dll
+D:\coding\projects\hospital\hospital\Hospital.Repositories\bin\Debug\net10.0\Hospital.Models.pdb
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.csproj.AssemblyReference.cache
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.AssemblyInfoInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.AssemblyInfo.cs
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.csproj.CoreCompileInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.043409E1.Up2Date
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.dll
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\refint\Hospital.Repositories.dll
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.pdb
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\Hospital.Repositories.genruntimeconfig.cache
+D:\coding\projects\hospital\hospital\Hospital.Repositories\obj\Debug\net10.0\ref\Hospital.Repositories.dll

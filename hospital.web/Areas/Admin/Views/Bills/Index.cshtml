@@ -1,0 +1,281 @@
+﻿@model List<Hospital.ViewModels.BillViewModel>
+
+<h2>Billing Dashboard</h2>
+
+<hr />
+
+
+<form method="get">
+
+    <div class="row mb-3">
+
+
+        <div class="col-md-4">
+
+            <input name="search"
+                   class="form-control"
+                   placeholder="Search Patient..."
+                   value="@Context.Request.Query["search"]" />
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+            <select name="isPaid"
+                    class="form-control">
+
+                <option value="">
+                    All Bills
+                </option>
+
+
+                <option value="true"
+                        selected="@(Context.Request.Query["isPaid"] == "true")">
+
+                    Paid Bills
+
+                </option>
+
+
+                <option value="false"
+                        selected="@(Context.Request.Query["isPaid"] == "false")">
+
+                    Unpaid Bills
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+
+        <div class="col-md-2">
+
+            <button class="btn btn-primary">
+
+                Search
+
+            </button>
+
+        </div>
+
+
+
+        <div class="col-md-2">
+
+            <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                Reset
+
+            </a>
+
+        </div>
+
+
+
+    </div>
+
+</form>
+
+
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Patient</th>
+
+            <th>Doctor</th>
+
+            <th>Original</th>
+
+            <th>Insurance</th>
+
+            <th>Discount</th>
+
+            <th>Final</th>
+
+            <th>Status</th>
+
+            <th>Created</th>
+
+            <th>Paid</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @if (Model.Any())
+        {
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+
+
+                    <td>
+
+                        @item.PatientName
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.DoctorName
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.OriginalAmount EGP
+
+                    </td>
+
+
+
+                    <td>
+
+                        @if (item.InsuranceId.HasValue)
+                        {
+
+                            @item.InsuranceName
+
+                        }
+                        else
+                        {
+
+                            <span>
+
+                                None
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+
+
+                    <td>
+
+                        @item.DiscountAmount EGP
+
+                    </td>
+
+
+
+
+                    <td>
+
+                        <b>
+
+                            @item.FinalAmount EGP
+
+                        </b>
+
+                    </td>
+
+
+
+                    <td>
+
+                        @if (item.IsPaid)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Paid
+
+                            </span>
+
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-danger">
+
+                                Unpaid
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.CreatedDate
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.PaidDate
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        <a asp-action="Details"
+                               asp-route-id="@item.Id"
+                               class="btn btn-info">
+
+                            Details
+
+                        </a>
+
+
+                    </td>
+
+
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="10"
+                    class="text-center">
+
+                    No Bills Found
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>

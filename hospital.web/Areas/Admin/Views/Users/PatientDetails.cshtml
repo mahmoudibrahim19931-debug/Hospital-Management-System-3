@@ -1,0 +1,157 @@
+﻿@model Hospital.ViewModels.PatientDetailsViewModel
+
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<h1>Patient Details</h1>
+
+<hr />
+
+<div class="card">
+    <div class="card-body">
+
+        <h3>@Model.Patient.Name</h3>
+
+        <p>
+            <strong>Email:</strong>
+            @Model.Patient.Email
+        </p>
+
+        <p>
+            <strong>City:</strong>
+            @Model.Patient.City
+        </p>
+
+        <p>
+            <strong>Address:</strong>
+            @Model.Patient.Address
+        </p>
+
+        <p>
+            <strong>Appointments:</strong>
+            @Model.Patient.AppointmentsCount
+        </p>
+
+    </div>
+</div>
+
+<br />
+
+<a asp-action="AllDoctors"
+       class="btn btn-secondary">
+    Back
+</a>
+
+<hr />
+
+<h3>Appointments History</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Appointments.Any())
+        {
+            @foreach (var appointment in Model.Appointments)
+            {
+                <tr>
+                    <td>@appointment.Name</td>
+                    <td>@appointment.Type</td>
+                    <td>@appointment.CreatedDate.ToShortDateString()</td>
+                    <td>@appointment.Description</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">
+                    No Appointments Found
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<hr />
+
+<h3>Medical Reports</h3>
+
+<a asp-area="Doctor"
+       asp-controller="Patients"
+       asp-action="CreateReport"
+       asp-route-patientId="@Model.Patient.Id"
+       class="btn btn-success mb-3">
+    Add Medical Report
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Diagnose</th>
+            <th>Doctor</th>
+            <th>Medicines</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Reports.Any())
+        {
+            @foreach (var report in Model.Reports)
+            {
+                <tr>
+
+                    <td>
+                        @report.Diagnose
+                    </td>
+
+                    <td>
+                        @report.DoctorName
+                    </td>
+
+                    <td>
+                        @string.Join(", ", report.Medicines)
+                    </td>
+
+                    <td>
+
+                        <a asp-area="Doctor"
+                               asp-controller="Patients"
+                               asp-action="ReportDetails"
+                               asp-route-id="@report.Id"
+                               class="btn btn-info btn-sm">
+                            View Report
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">
+                    No Medical Reports Found
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

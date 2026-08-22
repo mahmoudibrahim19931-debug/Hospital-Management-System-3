@@ -1,0 +1,180 @@
+﻿@model List<Hospital.ViewModels.BillViewModel>
+
+
+<h2>My Bills</h2>
+
+<hr />
+
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Doctor</th>
+
+            <th>Insurance</th>
+
+            <th>Original</th>
+
+            <th>Discount</th>
+
+            <th>Final</th>
+
+            <th>Status</th>
+
+            <th>Created</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @foreach (var bill in Model)
+        {
+
+            <tr>
+
+
+                <td>
+
+                    @bill.DoctorName
+
+                </td>
+
+
+
+                <td>
+
+                    @if (!string.IsNullOrEmpty(bill.InsuranceName))
+                    {
+
+                        <span class="badge bg-info">
+
+                            @bill.InsuranceName
+
+                        </span>
+
+                    }
+                    else
+                    {
+
+                        <span class="text-muted">
+
+                            None
+
+                        </span>
+
+                    }
+
+                </td>
+
+
+
+
+                <td>
+
+                    @bill.OriginalAmount EGP
+
+                </td>
+
+
+
+                <td>
+
+                    @bill.DiscountAmount EGP
+
+                </td>
+
+
+
+                <td>
+
+                    @bill.FinalAmount EGP
+
+                </td>
+
+
+
+
+                <td>
+
+
+                    @if (bill.IsPaid)
+                    {
+
+                        <span class="badge bg-success">
+
+                            Paid
+
+                        </span>
+
+                    }
+                    else
+                    {
+
+                        <span class="badge bg-danger">
+
+                            Unpaid
+
+                        </span>
+
+                    }
+
+
+                </td>
+
+
+
+                <td>
+
+                    @bill.CreatedDate
+
+                </td>
+
+
+
+
+                <td>
+
+
+                    @if (!bill.IsPaid)
+                    {
+
+                        <a asp-action="Pay"
+                               asp-route-id="@bill.Id"
+                               class="btn btn-success">
+
+                            Pay
+
+                        </a>
+
+                    }
+                    else
+                    {
+
+                        <span>
+
+                            Already Paid
+
+                        </span>
+
+                    }
+
+
+                </td>
+
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>

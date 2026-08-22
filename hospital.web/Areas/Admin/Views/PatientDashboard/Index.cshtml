@@ -1,0 +1,78 @@
+﻿@model Hospital.ViewModels.PatientDashboardViewModel
+
+<h1>@Model.PatientName Dashboard</h1>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4>Total</h4>
+                <h2>@Model.TotalAppointments</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4>Pending</h4>
+                <h2>@Model.PendingAppointments</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4>Approved</h4>
+                <h2>@Model.ApprovedAppointments</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4>Completed</h4>
+                <h2>@Model.CompletedAppointments</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<h3>Appointments</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Doctor</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.DoctorName</td>
+                <td>@item.Type</td>
+                <td>@item.Status</td>
+                <td>@item.CreatedDate</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

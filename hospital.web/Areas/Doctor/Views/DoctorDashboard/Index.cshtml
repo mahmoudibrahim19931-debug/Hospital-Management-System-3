@@ -1,0 +1,284 @@
+﻿@model Hospital.ViewModels.DoctorDashboardViewModel
+
+<h2>Doctor Dashboard</h2>
+
+<div class="row">
+
+
+    <div class="col-md-3">
+        <div class="card p-3 mb-3">
+            <h4>Total Appointments</h4>
+            <h2>@Model.TotalAppointments</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+        <div class="card p-3 mb-3">
+            <h4>Today's Appointments</h4>
+            <h2>@Model.TodayAppointments</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+        <div class="card p-3 mb-3">
+            <h4>Total Patients</h4>
+            <h2>@Model.TotalPatients</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+        <div class="card p-3 mb-3">
+            <h4>Pending Appointments</h4>
+            <h2>@Model.PendingAppointments</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h4>Completed Visits</h4>
+            <h2>@Model.CompletedVisits</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h4>Pending Labs</h4>
+            <h2>@Model.PendingLabs</h2>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h4>Revenue</h4>
+
+            <h2>
+
+                @Model.Revenue EGP
+
+            </h2>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<hr />
+
+
+<h3>Upcoming Appointments</h3>
+
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Patient</th>
+
+            <th>Date</th>
+
+            <th>Type</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @foreach (var item in Model.UpcomingAppointments)
+        {
+
+            <tr>
+
+
+                <td>
+
+                    <a asp-area="Doctor"
+                           asp-controller="Patients"
+                           asp-action="Details"
+                           asp-route-id="@item.PatientId">
+
+                        @item.PatientName
+
+                    </a>
+
+                </td>
+
+
+
+                <td>
+
+                    @(item.AppointmentDate?.ToString("dd/MM/yyyy hh:mm tt"))
+
+                </td>
+
+
+
+                <td>
+
+                    @item.Type
+
+                </td>
+
+
+            </tr>
+
+        }
+
+
+    </tbody>
+
+
+</table>
+
+@{
+    var stats =
+    ViewBag.Statistics
+    as Hospital.ViewModels.DoctorStatisticsViewModel;
+}
+
+
+<hr />
+
+<h3>Performance Analytics</h3>
+
+
+<div class="row">
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>Patients This Month</h5>
+
+            <h2>
+
+                @stats.PatientsThisMonth
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>Patients This Week</h5>
+
+            <h2>
+
+                @stats.PatientsThisWeek
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>New Patients</h5>
+
+            <h2>
+
+                @stats.NewPatientsThisMonth
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>Average Patients / Day</h5>
+
+            <h2>
+
+                @stats.AveragePatientsPerDay
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>Completion Rate</h5>
+
+            <h2>
+
+                @stats.CompletionRate %
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="col-md-4">
+
+        <div class="card p-3 mb-3">
+
+            <h5>Most Common Visit</h5>
+
+            <h2>
+
+                @stats.MostCommonVisitType
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+</div>

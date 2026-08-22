@@ -1,0 +1,77 @@
+﻿<div class="container mt-4">
+
+    <h2 class="mb-4">
+        Room Details
+    </h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th style="width:250px;">Room Number</th>
+            <td>@Model.RoomNumber</td>
+        </tr>
+
+        <tr>
+            <th>Room Type</th>
+            <td>@Model.Type</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>@Model.Status</td>
+        </tr>
+
+        <tr>
+            <th>Capacity</th>
+            <td>@Model.Capacity</td>
+        </tr>
+
+        <tr>
+            <th>Occupied Beds</th>
+            <td>@Model.OccupiedBeds</td>
+        </tr>
+
+        <tr>
+            <th>Floor</th>
+            <td>@Model.Floor</td>
+        </tr>
+
+        <tr>
+            <th>Wing</th>
+            <td>@Model.Wing</td>
+        </tr>
+
+        <tr>
+            <th>Daily Rate</th>
+            <td>@Model.DailyRate EGP</td>
+        </tr>
+
+        <tr>
+            <th>Hospital</th>
+            <td>@Model.HospitalName</td>
+        </tr>
+
+        <tr>
+            <th>Current Patient</th>
+            <td>@Model.PatientName</td>
+        </tr>
+
+        <tr>
+            <th>Notes</th>
+            <td>@Model.Notes</td>
+        </tr>
+
+    </table>
+
+    <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-warning">
+        Edit
+    </a>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Back
+    </a>
+
+</div>

@@ -1,0 +1,36 @@
+﻿@model Hospital.Utilities.PagedResult<Hospital.ViewModels.TimingViewModel>
+
+<h1>Doctor Timing</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Create New Timing
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Morning Start</th>
+            <th>Morning End</th>
+            <th>Afternoon Start</th>
+            <th>Afternoon End</th>
+            <th>Duration</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.MorningShiftStartTime</td>
+                <td>@item.MorningShiftEndTime</td>
+                <td>@item.AfternoonShiftStartTime</td>
+                <td>@item.AfternoonShiftEndTime</td>
+                <td>@item.Duration</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

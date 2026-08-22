@@ -1,0 +1,100 @@
+﻿@model List<Hospital.ViewModels.SupplierViewModel>
+
+
+<h2>Suppliers</h2>
+
+
+
+<p>
+
+    <a asp-action="Create"
+           class="btn btn-primary">
+
+        Add Supplier
+
+    </a>
+
+</p>
+
+
+
+<table class="table table-bordered">
+
+
+    <thead>
+
+
+        <tr>
+
+            <th>Company</th>
+
+            <th>Phone</th>
+
+            <th>Email</th>
+
+            <th>Address</th>
+
+        </tr>
+
+
+    </thead>
+
+
+
+
+    <tbody>
+
+
+        @foreach (var supplier in Model)
+        {
+
+
+            <tr>
+
+
+                <td>
+
+                    @supplier.Company
+
+                </td>
+
+
+
+
+                <td>
+
+                    @supplier.Phone
+
+                </td>
+
+
+
+
+                <td>
+
+                    @supplier.Email
+
+                </td>
+
+
+
+
+                <td>
+
+                    @supplier.Address
+
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+    </tbody>
+
+
+
+</table>

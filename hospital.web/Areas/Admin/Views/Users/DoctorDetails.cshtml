@@ -1,0 +1,118 @@
+﻿@model Hospital.ViewModels.ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<h1>Doctor Details</h1>
+
+<hr />
+
+<div class="card">
+    <div class="card-body">
+
+        <h3>@Model.Name</h3>
+
+        <p>
+            <strong>Email:</strong>
+            @Model.Email
+        </p>
+
+        <p>
+            <strong>UserName:</strong>
+            @Model.UserName
+        </p>
+
+        <p>
+            <strong>Address:</strong>
+            @Model.Address
+        </p>
+
+        <p>
+            <strong>Gender:</strong>
+            @Model.Gender
+        </p>
+
+        <p>
+            <strong>Specialist:</strong>
+            @Model.Specilist
+        </p>
+
+        <p>
+            <strong>City:</strong>
+            @Model.City
+        </p>
+        <hr />
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h4>Appointments</h4>
+                    <h2>@Model.AppointmentsCount</h2>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h4>Patients</h4>
+                    <h2>@Model.PatientsCount</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+<a asp-action="AllDoctors"
+       class="btn btn-secondary">
+    Back To Doctors List
+</a>
+
+<hr />
+
+<h3>Latest Appointments</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Type</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var appointment in Model.LatestAppointments)
+        {
+            <tr>
+
+                <td>
+
+                    <a asp-action="PatientDetails"
+                           asp-route-id="@appointment.PatientId">
+
+                        @(appointment.Patient?.Name)
+
+                    </a>
+
+                </td>
+
+                <td>
+                    @appointment.Type
+                </td>
+
+                <td>
+                    @appointment.CreatedDate.ToString("dd/MM/yyyy")
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

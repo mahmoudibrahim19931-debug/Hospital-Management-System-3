@@ -1,0 +1,211 @@
+﻿@model List<Hospital.Models.PatientInsurance>
+
+
+<h2>
+
+    Insurance Requests
+
+</h2>
+
+
+<hr />
+
+
+
+
+@if (Model.Any())
+{
+
+
+    <table class="table table-bordered">
+
+
+        <thead>
+
+
+            <tr>
+
+                <th>
+
+                    Patient
+
+                </th>
+
+
+                <th>
+
+                    Insurance
+
+                </th>
+
+
+                <th>
+
+                    Discount
+
+                </th>
+
+
+
+                <th>
+
+                    Requested At
+
+                </th>
+
+
+
+                <th>
+
+                    Status
+
+                </th>
+
+
+
+                <th>
+
+                    Actions
+
+                </th>
+
+
+            </tr>
+
+
+        </thead>
+
+
+
+
+
+        <tbody>
+
+
+
+            @foreach (var item in Model)
+            {
+
+
+                <tr>
+
+
+
+                    <td>
+
+                        @item.Patient?.Name
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.Insurance?.Name
+
+                    </td>
+
+
+
+
+                    <td>
+
+                        @item.Insurance?.DiscountPercentage %
+
+                    </td>
+
+
+
+
+                    <td>
+
+                        @item.CreatedDate
+                        .ToString("dd/MM/yyyy hh:mm tt")
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        <span class="badge bg-warning">
+
+                            Pending Approval
+
+                        </span>
+
+
+                    </td>
+
+
+
+
+
+                    <td>
+
+
+
+
+                        <a asp-action="Approve"
+                               asp-route-id="@item.Id"
+                               class="btn btn-success btn-sm"
+                               onclick="return confirm('Approve this insurance request?')">
+
+
+                            Approve
+
+
+                        </a>
+
+
+
+
+                        <a asp-action="Reject"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger btn-sm">
+
+
+                            Reject
+
+
+                        </a>
+
+
+
+                    </td>
+
+
+
+                </tr>
+
+
+
+            }
+
+
+
+        </tbody>
+
+
+
+    </table>
+
+
+
+}
+else
+{
+
+
+    <div class="alert alert-success">
+
+
+        No Pending Insurance Requests
+
+
+    </div>
+
+
+
+}

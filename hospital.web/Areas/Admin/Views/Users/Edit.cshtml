@@ -1,0 +1,26 @@
+﻿@model Hospital.ViewModels.ApplicationUserViewModel
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-check">
+        <input asp-for="IsDoctor" class="form-check-input" />
+        <label asp-for="IsDoctor" class="form-check-label">
+            Is Doctor
+        </label>
+    </div>
+
+    <br />
+
+    <input type="submit"
+           value="Save"
+           class="btn btn-primary" />
+
+</form>
+
+<br />
+
+<a asp-action="Index">Back to List</a>

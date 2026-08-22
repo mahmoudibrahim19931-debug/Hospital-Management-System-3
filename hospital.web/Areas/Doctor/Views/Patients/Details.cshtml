@@ -1,0 +1,1080 @@
+﻿
+@model Hospital.ViewModels.PatientDetailsViewModel
+@using Hospital.Models
+
+<h2>Patient Details</h2>
+
+<hr />
+
+<div>
+    <strong>Name :</strong> @Model.Patient.Name
+</div>
+
+<div>
+    <strong>Email :</strong> @Model.Patient.Email
+</div>
+
+<div>
+    <strong>Gender :</strong> @Model.Patient.Gender
+</div>
+
+<div>
+    <strong>City :</strong> @Model.Patient.City
+</div>
+
+<div>
+    <strong>Address :</strong> @Model.Patient.Address
+</div>
+
+<hr />
+
+<h3>Appointments History</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Type</th>
+
+            <th>Appointment Date</th>
+
+            <th>Description</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @if (Model.Appointments.Any())
+        {
+
+            @foreach (var appointment in Model.Appointments)
+            {
+
+                <tr>
+
+                    <td>
+                        @appointment.Name
+                    </td>
+
+                    <td>
+                        @appointment.Type
+                    </td>
+
+                    <td>
+
+                        @if (appointment.AppointmentDate.HasValue)
+                        {
+                            @(appointment.AppointmentDate.Value.ToString("dd/MM/yyyy hh:mm tt"))
+                        }
+                        else
+                        {
+                            <span class="text-danger">
+                                Not Scheduled Yet
+                            </span>
+                        }
+
+                    </td>
+
+                    <td>
+                        @appointment.Description
+                    </td>
+
+
+                    <td>
+
+
+                        @if (appointment.Status ==
+Appointment.AppointmentStatus.Pending)
+                        {
+
+
+                            <a asp-action="ScheduleAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-success">
+
+
+                                Schedule
+
+
+                            </a>
+
+
+
+
+                            <a asp-action="RejectAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-danger">
+
+
+                                Reject
+
+
+                            </a>
+
+
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.PatientPending)
+                        {
+
+
+                            <span class="badge bg-warning">
+
+
+                                Waiting Patient Confirmation
+
+
+                            </span>
+
+
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.PatientConfirmed)
+                        {
+
+
+                            <a asp-action="StartVisit"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-warning">
+
+
+                                Start Visit
+
+
+                            </a>
+
+
+
+                        }
+
+                       
+
+                        @{
+
+                            var billExists =
+                                Model.Bills.Any(
+
+                                    x => x.AppointmentId ==
+                                    appointment.Id);
+
+                        }
+
+
+
+                        @if (!billExists
+                        &&
+                        appointment.Status ==
+                        Appointment.AppointmentStatus.Done)
+                        {
+
+
+                            <a asp-action="CreateBill"
+                                   asp-route-appointmentId="@appointment.Id"
+                                   class="btn btn-warning">
+
+
+                                Create Bill
+
+
+                            </a>
+
+
+
+                        }
+                        else if (billExists)
+                        {
+
+
+                            <span class="badge bg-success">
+
+
+                                Bill Created
+
+
+                            </span>
+
+
+                        }
+
+                        @if (appointment.Status == Appointment.AppointmentStatus.InProgress)
+                        {
+
+                            <span class="badge bg-info">
+
+                                In Progress
+
+                            </span>
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.Done)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Done
+
+                            </span>
+
+                        }
+
+                       
+
+                        @if (!billExists &&
+                             appointment.Status ==
+                             Appointment.AppointmentStatus.Completed)
+                        {
+
+                            <a asp-action="CreateBill"
+                                   asp-route-appointmentId="@appointment.Id"
+                                   class="btn btn-warning">
+
+                                Create Bill
+
+                            </a>
+
+                        }
+                        else if (billExists)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Bill Created
+
+                            </span>
+
+                        }
+
+
+                        @if (appointment.Status ==
+                       Appointment.AppointmentStatus.Cancelled)
+                        {
+                            <span class="badge bg-danger">
+
+                                Cancelled
+
+                            </span>
+                        }
+
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        @if (appointment.Status ==
+                       Appointment.AppointmentStatus.Pending)
+                        {
+
+
+                            <a asp-action="ScheduleAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-success">
+
+                                Schedule
+
+                            </a>
+
+
+
+                            <a asp-action="RejectAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-danger">
+
+                                Reject
+
+                            </a>
+
+                        }
+
+
+
+                       
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.Approved)
+                        {
+
+
+                            <a asp-action="StartVisit"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-warning">
+
+                                Start Visit
+
+                            </a>
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.InProgress)
+                        {
+
+
+                            <a asp-action="FinishVisit"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-primary">
+
+                                Finish Visit
+
+                            </a>
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.Done)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Visit Finished
+
+                            </span>
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.Completed)
+                        {
+
+
+                            <a asp-action="CompleteAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-primary">
+
+                                Complete
+
+                            </a>
+
+                        }
+                        @if (appointment.Status ==
+Appointment.AppointmentStatus.InProgress)
+                        {
+
+                            <span class="badge bg-info">
+
+                                In Progress
+
+                            </span>
+
+                        }
+
+
+
+                        @if (appointment.Status ==
+                        Appointment.AppointmentStatus.Done)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Done
+
+                            </span>
+
+                        }
+
+
+                    </td>
+
+
+                </tr>
+
+            }
+
+        }
+
+        else
+        {
+
+            <tr>
+
+                <td colspan="6">
+
+                    No Appointments Found
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+
+
+
+<hr />
+
+<h3>Medical Reports</h3>
+
+
+
+<a asp-action="CreateReport"
+       asp-route-patientId="@Model.Patient.Id"
+       class="btn btn-success mb-3">
+
+    Add Medical Report
+
+</a>
+
+
+
+<a asp-action="RequestLab"
+       asp-route-patientId="@Model.Patient.Id"
+       class="btn btn-warning mb-3 ms-2">
+
+    Request Lab Test
+
+</a>
+
+
+
+
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Diagnose</th>
+
+            <th>Doctor</th>
+
+            <th>Medicines</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @if (Model.Reports.Any())
+        {
+
+            @foreach (var report in Model.Reports)
+            {
+
+                <tr>
+
+                    <td>
+
+                        @report.Diagnose
+
+                    </td>
+
+
+                    <td>
+
+                        @report.DoctorName
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        @if (report.Medicines.Any())
+                        {
+
+                            <ul>
+
+                                @foreach (var medicine in report.Medicines)
+                                {
+
+                                    <li>
+
+                                        @medicine
+
+                                    </li>
+
+                                }
+
+                            </ul>
+
+                        }
+                        else
+                        {
+
+                            <span>
+
+                                No Medicines
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+                    <td>
+
+
+                        <a asp-action="ReportDetails"
+                               asp-route-id="@report.Id"
+                               class="btn btn-info">
+
+                            View
+
+                        </a>
+
+
+                    </td>
+
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="4">
+
+                    No Medical Reports Found
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+<hr />
+
+<hr />
+
+<h3>Laboratory Tests</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Type</th>
+            <th>Code</th>
+            <th>Status</th>
+            <th>Result</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        @if (Model.Labs.Any())
+        {
+
+            @foreach (var lab in Model.Labs)
+            {
+
+                <tr>
+
+                    <td>@lab.TestType</td>
+
+                    <td>@lab.TestCode</td>
+
+                    <td>
+
+                        @if (lab.IsDone)
+                        {
+                            <span class="badge bg-success">
+                                Done
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning">
+                                Pending
+                            </span>
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        @lab.TestResult
+
+                    </td>
+
+
+                    <td>
+
+                        @lab.ResultDate
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="5">
+
+                    No Lab Tests
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+
+
+<hr />
+
+
+
+<h3>Bills</h3>
+
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        @if (Model.Bills.Any())
+        {
+
+            @foreach (var bill in Model.Bills)
+            {
+
+                <tr>
+
+                    <td>
+
+                        @bill.Amount
+
+                    </td>
+
+
+                    <td>
+
+                        @if (bill.IsPaid)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Paid
+
+                            </span>
+
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-danger">
+
+                                Unpaid
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+
+                    <td>
+
+                        @bill.CreatedDate
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="3">
+
+                    No Bills
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+
+
+<hr />
+
+
+<h3>Doctor Notes</h3>
+
+
+
+<form asp-action="AddNote">
+
+
+    <textarea name="note"
+              class="form-control"
+              rows="4"></textarea>
+
+
+
+    <input type="hidden"
+           name="patientId"
+           value="@Model.Patient.Id" />
+
+
+
+    <br />
+
+
+    <button class="btn btn-primary">
+
+        Save Note
+
+    </button>
+
+
+</form>
+
+
+
+<br />
+
+
+
+
+@if (Model.Notes.Any())
+{
+
+    <table class="table table-bordered">
+
+
+        <thead>
+
+            <tr>
+
+                <th>Note</th>
+
+                <th>Date</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            @foreach (var item in Model.Notes)
+            {
+
+                <tr>
+
+                    <td>
+
+                        @item.Note
+
+                    </td>
+
+
+                    <td>
+
+                        @item.CreatedDate
+
+                    </td>
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+}
+else
+{
+
+    <div class="alert alert-info">
+
+        No Notes Found
+
+    </div>
+
+}
+
+<hr />
+
+<h3>Patient Timeline</h3>
+
+
+@if (Model.Timeline.Any())
+{
+
+    <div class="timeline">
+
+        @foreach (var item in Model.Timeline)
+        {
+
+            <div class="card mb-2">
+
+                <div class="card-body">
+
+                    <h6>
+
+                        @item.Date.ToString("dd/MM/yyyy hh:mm tt")
+
+                    </h6>
+
+
+                    <strong>
+
+                        @item.Title
+
+                    </strong>
+
+
+                    <p>
+
+                        @item.Description
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+
+}
+else
+{
+
+    <div class="alert alert-info">
+
+        No Timeline Available
+
+    </div>
+
+}
+
+<hr />
+
+<h3>Medical Files</h3>
+
+
+
+<form asp-action="UploadMedicalFile"
+      method="post"
+      enctype="multipart/form-data">
+
+
+    <input type="hidden"
+           name="patientId"
+           value="@Model.Patient.Id" />
+
+
+
+    <input type="file"
+           name="file"
+           class="form-control" />
+
+
+    <br />
+
+
+    <button class="btn btn-success">
+
+        Upload
+
+    </button>
+
+
+</form>
+
+
+
+<br />
+
+@if (Model.Files.Any())
+{
+
+    <table class="table table-bordered">
+
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Date</th>
+
+                <th>File</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            @foreach (var item in Model.Files)
+            {
+
+                <tr>
+
+
+                    <td>
+
+                        @item.FileName
+
+                    </td>
+
+
+                    <td>
+
+                        @item.UploadDate
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        @if (item.FilePath.EndsWith(".jpg")
+                        ||
+                        item.FilePath.EndsWith(".png")
+                        ||
+                        item.FilePath.EndsWith(".jpeg"))
+                        {
+
+                            <img src="@item.FilePath"
+                                 width="150" />
+
+                        }
+                        else
+                        {
+
+                            <a href="@item.FilePath"
+                                   target="_blank"
+                                   class="btn btn-info">
+
+                                View
+
+
+                            </a>
+
+                        }
+
+
+                    </td>
+
+
+
+                </tr>
+
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+}
+else
+{
+
+    <div class="alert alert-info">
+
+        No Medical Files
+
+    </div>
+
+}
+

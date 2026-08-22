@@ -1,0 +1,341 @@
+﻿@model List<Hospital.ViewModels.AppointmentViewModel>
+
+<h2>Appointments</h2>
+
+<hr />
+
+
+<form method="get">
+
+    <div class="row mb-3">
+
+
+        <div class="col-md-4">
+
+            <input name="search"
+                   class="form-control"
+                   placeholder="Search Patient or Doctor"
+                   value="@Context.Request.Query["search"]" />
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+            <select name="status"
+                    class="form-control">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Approved">
+                    Approved
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+
+        <div class="col-md-2">
+
+            <button class="btn btn-primary">
+
+                Search
+
+            </button>
+
+        </div>
+
+
+
+
+        <div class="col-md-2">
+
+            <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                Reset
+
+            </a>
+
+        </div>
+
+
+
+    </div>
+
+
+</form>
+
+
+<p>
+
+    <a asp-action="Calendar"
+           class="btn btn-success">
+
+        Calendar View
+
+    </a>
+
+</p>
+
+
+<table class="table table-bordered">
+
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Type</th>
+
+            <th>Date</th>
+
+            <th>Description</th>
+
+            <th>Doctor</th>
+
+            <th>Patient</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+
+
+
+
+    <tbody>
+
+
+        @if (Model.Any())
+        {
+
+
+            @foreach (var item in Model)
+            {
+
+
+                <tr>
+
+                    <td>
+
+                        @item.Name
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.Type
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.CreatedDate
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.Description
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.DoctorName
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.PatientName
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        @if (item.Status.ToString() == "Pending")
+                        {
+
+                            <span class="badge bg-warning">
+
+                                Pending
+
+                            </span>
+
+                        }
+                        else if (item.Status.ToString() == "Approved")
+                        {
+
+                            <span class="badge bg-primary">
+
+                                Approved
+
+                            </span>
+
+                        }
+                        else if (item.Status.ToString() == "Completed")
+                        {
+
+                            <span class="badge bg-success">
+
+                                Completed
+
+                            </span>
+
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-danger">
+
+                                Cancelled
+
+                            </span>
+
+                        }
+
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        <a asp-action="Edit"
+                               asp-route-id="@item.Id">
+
+                            Edit
+
+                        </a>
+
+                        |
+
+
+
+                        <a asp-action="Details"
+                               asp-route-id="@item.Id">
+
+                            Details
+
+                        </a>
+
+                        |
+
+
+
+                        <a asp-action="Delete"
+                               asp-route-id="@item.Id">
+
+                            Delete
+
+                        </a>
+
+                        |
+
+
+
+                        <a asp-action="Approve"
+                               asp-route-id="@item.Id">
+
+                            Approve
+
+                        </a>
+
+                        |
+
+
+
+                        <a asp-action="Complete"
+                               asp-route-id="@item.Id">
+
+                            Complete
+
+                        </a>
+
+                        |
+
+
+
+                        <a asp-action="Cancel"
+                               asp-route-id="@item.Id">
+
+                            Cancel
+
+                        </a>
+
+
+
+                    </td>
+
+
+                </tr>
+
+
+            }
+
+
+        }
+        else
+        {
+
+
+            <tr>
+
+                <td colspan="8"
+                    class="text-center">
+
+                    No Appointments Found
+
+                </td>
+
+            </tr>
+
+
+        }
+
+
+    </tbody>
+
+
+
+</table>

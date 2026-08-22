@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Hospital.Models/Hospital.Models.csproj" />
+  <Project Path="Hospital.Repositories/Hospital.Repositories.csproj" />
+  <Project Path="Hospital.Services/Hospital.Services.csproj" />
+  <Project Path="Hospital.Utilities/Hospital.Utilities.csproj" />
+  <Project Path="Hospital.ViewModels/Hospital.ViewModels.csproj" />
+  <Project Path="hospital.web/hospital.web.csproj" />
+</Solution>

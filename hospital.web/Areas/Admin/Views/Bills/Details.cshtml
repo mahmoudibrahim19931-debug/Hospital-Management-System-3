@@ -1,0 +1,153 @@
+﻿@model Hospital.ViewModels.BillViewModel
+
+
+<h2>Invoice</h2>
+
+<hr />
+
+
+<table class="table table-bordered">
+
+
+
+    <tr>
+
+        <th>Patient</th>
+
+        <td>
+
+            @Model.PatientName
+
+        </td>
+
+
+    </tr>
+
+
+
+    <tr>
+
+        <th>Doctor</th>
+
+        <td>
+
+            @Model.DoctorName
+
+        </td>
+
+
+    </tr>
+
+
+
+    <tr>
+
+        <th>Appointment</th>
+
+        <td>
+
+            #@Model.AppointmentId
+
+        </td>
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+        <th>Amount</th>
+
+        <td>
+
+            @Model.Amount EGP
+
+        </td>
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+        <th>Status</th>
+
+        <td>
+
+
+            @if (Model.IsPaid)
+            {
+
+
+                <span class="badge bg-success">
+
+                    Paid
+
+                </span>
+
+
+            }
+            else
+            {
+
+
+                <span class="badge bg-danger">
+
+                    Unpaid
+
+                </span>
+
+
+            }
+
+
+
+        </td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+        <th>Created</th>
+
+        <td>
+
+
+            @Model.CreatedDate
+
+
+        </td>
+
+
+    </tr>
+
+
+
+
+    <tr>
+
+        <th>Paid Date</th>
+
+        <td>
+
+
+            @Model.PaidDate
+
+
+        </td>
+
+
+
+    </tr>
+
+
+
+</table>

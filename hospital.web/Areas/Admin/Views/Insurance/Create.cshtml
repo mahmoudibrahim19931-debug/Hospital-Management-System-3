@@ -1,0 +1,104 @@
+﻿@model Hospital.Models.Insurance
+
+
+
+<h2>Create Insurance</h2>
+
+
+
+<form method="post">
+
+
+
+    <div class="mb-3">
+
+        <label>Name</label>
+
+        <input asp-for="Name"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="mb-3">
+
+        <label>Policy Number</label>
+
+        <input asp-for="PolicyNumber"
+               class="form-control" />
+
+    </div>
+
+
+
+
+
+    <div class="mb-3">
+
+        <label>Start Date</label>
+
+        <input asp-for="StartDate"
+               class="form-control" />
+
+    </div>
+
+
+
+
+
+    <div class="mb-3">
+
+        <label>End Date</label>
+
+        <input asp-for="EndDate"
+               class="form-control" />
+
+    </div>
+
+
+
+
+
+
+    <div class="mb-3">
+
+        <label>Discount</label>
+
+        <input asp-for="DiscountPercentage"
+               class="form-control" />
+
+    </div>
+
+
+
+
+
+
+    <div class="form-check mb-3">
+
+        <input asp-for="IsActive"
+               class="form-check-input" />
+
+
+        <label>
+
+            Active
+
+        </label>
+
+    </div>
+
+
+
+
+
+    <button class="btn btn-success">
+
+        Save
+
+    </button>
+
+
+</form>

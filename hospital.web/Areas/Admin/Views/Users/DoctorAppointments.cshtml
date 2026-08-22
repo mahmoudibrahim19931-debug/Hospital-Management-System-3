@@ -1,0 +1,30 @@
+﻿@model List<Hospital.ViewModels.AppointmentViewModel>
+
+<h2>Doctor Appointments</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PatientName</td>
+                <td>@item.Type</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

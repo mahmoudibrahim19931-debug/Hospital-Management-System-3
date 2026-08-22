@@ -1,0 +1,17 @@
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.ViewModels.deps.json
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.ViewModels.runtimeconfig.json
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.ViewModels.dll
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.ViewModels.pdb
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.Models.dll
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\bin\Debug\net10.0\Hospital.Models.pdb
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.csproj.AssemblyReference.cache
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.AssemblyInfoInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.AssemblyInfo.cs
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.csproj.CoreCompileInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.62AB27C3.Up2Date
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.dll
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\refint\Hospital.ViewModels.dll
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.pdb
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\Hospital.ViewModels.genruntimeconfig.cache
+D:\coding\projects\hospital\hospital\Hospital.ViewModels\obj\Debug\net10.0\ref\Hospital.ViewModels.dll

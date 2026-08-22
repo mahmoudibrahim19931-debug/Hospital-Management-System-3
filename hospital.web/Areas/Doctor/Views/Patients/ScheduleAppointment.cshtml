@@ -1,0 +1,41 @@
+﻿
+@model Hospital.ViewModels.AppointmentViewModel
+
+
+<h2>Schedule Appointment</h2>
+
+
+<form method="post">
+
+    <input asp-for="Id" hidden />
+
+
+
+    <div class="form-group">
+
+        <label>
+
+            Appointment Date
+
+        </label>
+
+
+        <input asp-for="AppointmentDate"
+               type="datetime-local"
+               class="form-control" />
+
+    </div>
+
+
+
+    <br />
+
+
+    <button class="btn btn-success">
+
+        Save
+
+    </button>
+
+</form>
+

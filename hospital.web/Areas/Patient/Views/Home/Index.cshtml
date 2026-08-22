@@ -1,0 +1,539 @@
+﻿@model Hospital.ViewModels.PatientDashboardViewModel
+
+@{
+    ViewData["Title"] = "My Dashboard";
+}
+
+<h2>Welcome @Model.PatientName</h2>
+
+<div class="card mb-3">
+
+    <div class="card-body">
+        @if (TempData["InsuranceMessage"] != null)
+        {
+
+            <div class="alert alert-info">
+
+                @TempData["InsuranceMessage"]
+
+            </div>
+
+        }
+
+        <h5>
+
+            My Insurance
+
+        </h5>
+
+
+
+        @if (!string.IsNullOrEmpty(Model.InsuranceName))
+        {
+
+            <span class="badge bg-success">
+
+                @Model.InsuranceName
+
+            </span>
+
+
+            <span>
+
+                (@Model.DiscountPercentage %)
+
+            </span>
+
+
+
+            @if (Model.HasPendingInsurance)
+            {
+
+                <br />
+                <br />
+
+                <span class="badge bg-warning">
+
+                    Pending Change
+
+                </span>
+
+
+                <strong>
+
+                    @Model.PendingInsuranceName
+
+                </strong>
+
+            }
+
+        }
+        else
+        {
+
+
+            @if (Model.HasPendingInsurance)
+            {
+
+
+                <span class="badge bg-warning">
+
+
+                    Pending Approval
+
+
+                </span>
+
+
+
+                <br />
+
+
+                <br />
+
+
+
+                <strong>
+
+                    @Model.PendingInsuranceName
+
+                </strong>
+
+
+            }
+            else
+            {
+
+
+                <p class="text-muted">
+
+                    No insurance selected
+
+                </p>
+
+
+
+                <form asp-action="SelectInsurance"
+                      method="post">
+
+
+                    <select name="insuranceId"
+                            class="form-select mb-2">
+
+
+                        @foreach (var item in Model.AvailableInsurances)
+                        {
+
+
+                            <option value="@item.Value">
+
+
+                                @item.Text
+
+
+                            </option>
+
+
+                        }
+
+
+                    </select>
+
+
+
+                    <button class="btn btn-primary">
+
+
+                        Select Insurance
+
+
+                    </button>
+
+
+                </form>
+
+
+            }
+
+
+        }
+
+    </div>
+
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>@Model.TotalAppointments</h3>
+                <p>Total Appointments</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>@Model.PendingAppointments</h3>
+                <p>Pending</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>@Model.ApprovedAppointments</h3>
+                <p>Approved</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>@Model.CompletedAppointments</h3>
+                <p>Completed</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<a asp-action="RequestAppointment"
+       class="btn btn-success mb-3">
+    Request New Appointment
+</a>
+
+<a asp-area="Patient"
+       asp-controller="Bills"
+       asp-action="Index"
+       class="btn btn-primary mb-3 ms-2">
+    My Bills
+</a>
+
+<h3>My Appointments</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Doctor</th>
+            <th>Type</th>
+            <th>Appointment Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Appointments.Any())
+        {
+            @foreach (var appointment in Model.Appointments)
+            {
+
+                <tr>
+
+                    <td>
+                        @appointment.DoctorName
+                    </td>
+
+                    <td>
+                        @appointment.Type
+                    </td>
+
+                    <td>
+
+                        @if (appointment.AppointmentDate.HasValue)
+                        {
+                            @appointment.AppointmentDate.Value.ToString("dd/MM/yyyy hh:mm tt")
+                        }
+                        else
+                        {
+                            <span class="text-danger">
+                                Not Scheduled Yet
+                            </span>
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        @if (appointment.Status ==
+                       Hospital.Models.Appointment.AppointmentStatus.Pending)
+                        {
+
+                            <span class="badge bg-warning">
+                                Pending
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.PatientPending)
+                        {
+
+                            <span class="badge bg-info">
+                                Waiting For Your Confirmation
+                            </span>
+
+                            <br />
+                            <br />
+
+                            <a asp-action="ConfirmAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-success btn-sm">
+
+                                Confirm
+
+                            </a>
+
+
+                            <a asp-action="RejectAppointment"
+                                   asp-route-id="@appointment.Id"
+                                   class="btn btn-danger btn-sm">
+
+                                Reject
+
+                            </a>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.PatientConfirmed)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Confirmed
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.Approved)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Approved
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.Completed)
+                        {
+
+                            <span class="badge bg-primary">
+
+                                Completed
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.Cancelled)
+                        {
+
+                            <span class="badge bg-danger">
+
+                                Cancelled
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.Waiting)
+                        {
+
+                            <span class="badge bg-secondary">
+
+                                Waiting
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.InProgress)
+                        {
+
+                            <span class="badge bg-warning">
+
+                                In Progress
+
+                            </span>
+
+                        }
+
+
+                        else if (appointment.Status ==
+                        Hospital.Models.Appointment.AppointmentStatus.Done)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Done
+
+                            </span>
+
+                        }
+
+
+                        else
+                        {
+
+                            <span class="badge bg-dark">
+
+                                @appointment.Status
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+                </tr>
+
+            }
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="4">
+
+                    No Appointments Found
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+<hr />
+
+<h3>My Lab Results</h3>
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Test</th>
+            <th>Status</th>
+            <th>Result</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @if (Model.Labs.Any())
+        {
+
+            foreach (var lab in Model.Labs)
+            {
+
+                <tr>
+
+                    <td>
+                        @lab.TestType
+                    </td>
+
+
+                    <td>
+
+                        @if (lab.IsDone)
+                        {
+
+                            <span class="badge bg-success">
+
+                                Done
+
+                            </span>
+
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-warning">
+
+                                Pending
+
+                            </span>
+
+                        }
+
+                    </td>
+
+
+                    <td>
+
+                        @lab.TestResult
+
+                    </td>
+
+
+                    <td>
+
+                        @if (lab.ResultDate.HasValue)
+                        {
+
+                            @lab.ResultDate.Value.ToShortDateString()
+
+                        }
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+                <td colspan="4">
+
+                    No Lab Results
+
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>

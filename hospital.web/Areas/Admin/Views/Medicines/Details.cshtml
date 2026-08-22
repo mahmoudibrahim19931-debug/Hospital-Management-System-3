@@ -1,0 +1,81 @@
+﻿@model Hospital.ViewModels.MedicineViewModel
+
+
+<h2>
+
+    @Model.Name
+
+</h2>
+
+
+
+<table class="table">
+
+
+    <thead>
+
+        <tr>
+
+            <th>Patient</th>
+
+            <th>Doctor</th>
+
+            <th>Report</th>
+
+            <th>Diagnose</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+
+
+        @foreach (var item in Model.UsageHistory)
+        {
+
+            <tr>
+
+
+                <td>
+
+                    @item.PatientName
+
+                </td>
+
+
+                <td>
+
+                    @item.DoctorName
+
+                </td>
+
+
+                <td>
+
+                    #@item.ReportId
+
+                </td>
+
+
+
+                <td>
+
+                    @item.Diagnose
+
+                </td>
+
+
+            </tr>
+
+
+        }
+
+
+    </tbody>
+
+
+</table>

@@ -1,0 +1,14 @@
+D:\coding\projects\hospital\hospital\Hospital.Models\bin\Debug\net10.0\Hospital.Models.deps.json
+D:\coding\projects\hospital\hospital\Hospital.Models\bin\Debug\net10.0\Hospital.Models.runtimeconfig.json
+D:\coding\projects\hospital\hospital\Hospital.Models\bin\Debug\net10.0\Hospital.Models.dll
+D:\coding\projects\hospital\hospital\Hospital.Models\bin\Debug\net10.0\Hospital.Models.pdb
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.csproj.AssemblyReference.cache
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.AssemblyInfoInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.AssemblyInfo.cs
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.csproj.CoreCompileInputs.cache
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.dll
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\refint\Hospital.Models.dll
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.pdb
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\Hospital.Models.genruntimeconfig.cache
+D:\coding\projects\hospital\hospital\Hospital.Models\obj\Debug\net10.0\ref\Hospital.Models.dll

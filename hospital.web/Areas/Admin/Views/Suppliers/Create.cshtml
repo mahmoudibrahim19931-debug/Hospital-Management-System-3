@@ -1,0 +1,65 @@
+﻿@model Hospital.ViewModels.SupplierViewModel
+
+<h2>Create Supplier</h2>
+
+<form asp-action="Create" method="post">
+
+
+    <div class="mb-3">
+
+        <label asp-for="Company"></label>
+
+        <input asp-for="Company"
+               class="form-control" />
+
+    </div>
+
+
+
+    <div class="mb-3">
+
+        <label asp-for="Phone"></label>
+
+        <input asp-for="Phone"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="mb-3">
+
+        <label asp-for="Email"></label>
+
+        <input asp-for="Email"
+               class="form-control" />
+
+    </div>
+
+
+
+
+    <div class="mb-3">
+
+        <label asp-for="Address"></label>
+
+        <textarea asp-for="Address"
+                      class="form-control">
+
+        </textarea>
+
+        </div>
+
+
+
+
+
+        <button class="btn btn-success">
+
+            Save
+
+        </button>
+
+
+    </form>

@@ -1,0 +1,115 @@
+﻿@model Hospital.ViewModels.RoomViewModel
+
+@{
+    ViewData["Title"] = "Edit Room";
+}
+
+<h1>Edit Room</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="Edit">
+
+            <input asp-for="Id" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="RoomNumber" class="form-label"></label>
+                <input asp-for="RoomNumber" class="form-control" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Type" class="form-label"></label>
+                <select asp-for="Type"
+                        asp-items="Html.GetEnumSelectList<Hospital.Models.RoomType>()"
+                        class="form-select">
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status"
+                        asp-items="Html.GetEnumSelectList<Hospital.Models.RoomStatus>()"
+                        class="form-select">
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="HospitalId" class="form-label"></label>
+                <select asp-for="HospitalId"
+                        asp-items="Model.Hospitals"
+                        class="form-control">
+                    <option value="">-- Select Hospital --</option>
+                </select>
+                <div class="form-group">
+                    <label asp-for="PatientId"></label>
+
+                    <select asp-for="PatientId"
+                            asp-items="Model.Patients"
+                            class="form-control">
+
+                        <option value="">-- No Patient --</option>
+
+                    </select>
+
+                    <span asp-validation-for="PatientId"
+                          class="text-danger"></span>
+                </div>
+                <span asp-validation-for="HospitalId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Capacity" class="form-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="OccupiedBeds" class="form-label"></label>
+                <input asp-for="OccupiedBeds" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DailyRate" class="form-label"></label>
+                <input asp-for="DailyRate" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Floor" class="form-label"></label>
+                <input asp-for="Floor" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Wing" class="form-label"></label>
+                <input asp-for="Wing" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label"></label>
+                <textarea asp-for="Notes" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary">
+                Save
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

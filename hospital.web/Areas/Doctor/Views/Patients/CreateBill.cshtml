@@ -1,0 +1,39 @@
+﻿@model Hospital.ViewModels.BillViewModel
+
+
+<h2>Create Bill</h2>
+
+
+<form method="post">
+
+
+    <input asp-for="PatientId" hidden />
+
+    <input asp-for="DoctorId" hidden />
+
+    <input asp-for="AppointmentId" hidden />
+
+
+
+    <div class="form-group">
+
+        <label>Amount</label>
+
+        <input asp-for="Amount"
+               class="form-control" />
+
+    </div>
+
+
+
+    <br />
+
+
+    <button class="btn btn-success">
+
+        Save Bill
+
+    </button>
+
+
+</form>

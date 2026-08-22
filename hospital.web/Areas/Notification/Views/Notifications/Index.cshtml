@@ -1,0 +1,91 @@
+﻿@model List<Hospital.ViewModels.NotificationViewModel>
+
+
+<h2>Notifications</h2>
+
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+
+            <th>Message</th>
+            <th>Date</th>
+            <th>Status</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+
+                <td>
+
+
+                    <a href="@item.Url">
+
+
+                        @item.Message
+
+
+                    </a>
+
+
+                </td>
+
+
+
+                <td>
+
+                    @item.CreatedDate
+
+                </td>
+
+
+
+                <td>
+
+
+                    @if (item.IsRead)
+                    {
+
+                        <span class="badge bg-success">
+
+                            Read
+
+                        </span>
+
+                    }
+                    else
+                    {
+
+                        <span class="badge bg-warning">
+
+                            Unread
+
+                        </span>
+
+                    }
+
+
+                </td>
+
+
+            </tr>
+
+        }
+
+
+    </tbody>
+
+
+</table>

@@ -1,0 +1,159 @@
+﻿@model List<Hospital.ViewModels.LabViewModel>
+
+<h2>Pending Lab Tests</h2>
+
+<hr />
+
+
+<form method="get">
+
+    <div class="row mb-3">
+
+
+        <div class="col-md-4">
+
+            <input name="search"
+                   class="form-control"
+                   placeholder="Search Patient or Test"
+                   value="@Context.Request.Query["search"]" />
+
+        </div>
+
+
+
+        <div class="col-md-2">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Search
+
+            </button>
+
+        </div>
+
+
+
+        <div class="col-md-2">
+
+            <a asp-action="PendingTests"
+                   class="btn btn-secondary">
+
+                Reset
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</form>
+
+
+
+<table class="table table-bordered">
+
+
+    <thead>
+
+        <tr>
+
+            <th>Patient</th>
+
+            <th>Test</th>
+
+            <th>Code</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+
+        @if (Model.Any())
+        {
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+
+
+                    <td>
+
+                        @item.PatientName
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.TestType
+
+                    </td>
+
+
+
+                    <td>
+
+                        @item.TestCode
+
+                    </td>
+
+
+
+                    <td>
+
+
+                        <a asp-action="EnterResult"
+                               asp-route-id="@item.Id"
+                               class="btn btn-success">
+
+
+                            Enter Result
+
+
+                        </a>
+
+
+                    </td>
+
+
+
+                </tr>
+
+            }
+
+        }
+        else
+        {
+
+            <tr>
+
+
+                <td colspan="4"
+                    class="text-center">
+
+
+                    No Pending Tests Found
+
+
+                </td>
+
+
+            </tr>
+
+        }
+
+
+    </tbody>
+
+
+</table>

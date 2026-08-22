@@ -1,0 +1,40 @@
+﻿@model Hospital.ViewModels.PatientReportViewModel
+
+<h2>Medical Report Details</h2>
+
+<hr />
+
+<div>
+    <strong>Patient:</strong>
+    @Model.PatientName
+</div>
+
+<div>
+    <strong>Doctor:</strong>
+    @Model.DoctorName
+</div>
+
+<div>
+    <strong>Diagnose:</strong>
+    @Model.Diagnose
+</div>
+
+<hr />
+
+<h3>Medicines</h3>
+
+@if (Model.Medicines.Any())
+{
+    <ul>
+
+        @foreach (var medicine in Model.Medicines)
+        {
+            <li>@medicine</li>
+        }
+
+    </ul>
+}
+else
+{
+    <p>No Medicines</p>
+}

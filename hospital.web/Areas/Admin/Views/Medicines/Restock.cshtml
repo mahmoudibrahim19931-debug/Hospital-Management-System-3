@@ -1,0 +1,43 @@
+﻿@model Hospital.ViewModels.MedicineViewModel
+
+<h2>Restock Medicine</h2>
+
+
+<h4>
+
+    @Model.Name
+
+</h4>
+
+
+
+<form asp-action="Restock">
+
+    <input type="hidden"
+           asp-for="Id" />
+
+
+    <div class="mb-3">
+
+        <label>
+
+            Quantity To Add
+
+        </label>
+
+
+        <input name="quantity"
+               class="form-control" />
+
+    </div>
+
+
+
+    <button class="btn btn-success">
+
+        Add Stock
+
+    </button>
+
+
+</form>
